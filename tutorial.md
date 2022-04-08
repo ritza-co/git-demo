@@ -55,25 +55,54 @@ When we commit the file we save the changes we made to our file to the local rep
 ## Push README.md file back up to GitHub
 
 
-For the next step, we might need to do something fancy with SSH keys so this process might be a little longer than the other steps. Before we can ```git push``` the file we need to use the SSH keypairs for Github.
+For the next step, we might need to use SSH keys so this process might be a little longer than the other steps. 
+Before we can ```git push``` the file we need to use the SSH keypairs for Github.
 
 ### SSH keypair setup for Github
 
-Now we will generate a SSH key pair with the following:
+Now we will generate a SSH key pair in our Shell with the following:
 ```python
 ssh-keygen -t rsa -C "https://github.com/ritza-co/git-demo"
 ```
-
-And then copy this component of the SSH key pair we created above, this component is specifically for Git Bash on Windows/Windows Powershell
+or you can just use 
 ```python
-cat ~/.ssh/id_rsa.pub | clip
+ssh-keygen
+```
+And you will get the following as a response:
+
+![](img.png)
+
+At this stage, you should click enter and leave this step to default and it will save it to ```/home/runner/.ssh/id_rsa.pub```  and it will then create a directory for you
+
+![](img2.png)
+
+Now we will also just press enter to leave it empty. The passphrase is hidden for security purposes but if you type something there you’ll have to type the same thing every time you use the key. So both times you are asked for a passphrase you would just leave it empty twice and your screen should look like this:
+![](img3.png)
+Your public key will then be saved.
+
+
+
+Next, we can run ```cat``` so we can view the public key that we created. 
+```python
+cat ~/.ssh/id_rsa.pub
+```
+After running this command your ssh key will be displayed as follows
+![](img4.png)
+
+
+So now that we have our ssh key we need to add it to our GitHub. In your GitHub profile under your project you will go to your settings and look for the security section, look for the Deploy Key section and follow the numbering by adding the ssh key and giving it a name 
+![](img5.png)
+
+
+
+
 ```
 Next, we want to test the SSH key with the following:
 ```python
 ssh -T git@github.com
 ```
 
-We need to chnage the directory into the local clone of our repository and run it:
+We need to change the directory into the local clone of our repository and run it:
 ```python
 git remote set-url origin git@github.com:username/https://github.com/ritza-co/git-demo
 ```

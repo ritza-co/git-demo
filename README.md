@@ -12,5 +12,5 @@ It will include the following commands:
 * git push
 * git commit
 
-Test change. another change.
+Test change. another change. Another chage.
   
